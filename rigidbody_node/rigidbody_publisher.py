@@ -9,7 +9,7 @@ class RigidbodyNode(Node):
 		self.publisher = self.create_publisher(PoseStamped, 'optitrack_pose',10)
 		self.client = NatNetClient()
 		self.client_address="192.168.0.70"
-		self.server_address="192.168.0.80"
+		self.server_address="192.168.0.60"
 		self.client.set_client_address(self.client_address)
 		self.client.set_server_address(self.server_address)
 		self.client.set_use_multicast(True)
