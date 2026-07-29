@@ -6,14 +6,21 @@ from .NatNetClient import NatNetClient
 class RigidbodyNode(Node):
 	def __init__(self):
 		super().__init__('rigidbody_node')
-		self.publisher = self.create_publisher(PoseStamped, 'optitrack_pose',10)
+		self.publisher1 = self.create_publisher(PoseStamped, 'optitrack_pose_1',10)
+		self.publisher2 = self.create_publisher(PoseStamped, 'optitrack_pose_2',10)
+		self.publisher3 = self.create_publisher(PoseStamped, 'optitrack_pose_3',10)
+		self.publisher4 = self.create_publisher(PoseStamped, 'optitrack_pose_4',10)
+		self.publisher5 = self.create_publisher(PoseStamped, 'optitrack_pose_5',10)
+		self.publisher6 = self.create_publisher(PoseStamped, 'optitrack_pose_6',10)
+		self.publisher7 = self.create_publisher(PoseStamped, 'optitrack_pose_7',10)
+
 		self.client = NatNetClient()
-		self.client_address="192.168.0.70"
+		self.client_address="192.168.0.50"
 		self.server_address="192.168.0.60"
 		self.client.set_client_address(self.client_address)
 		self.client.set_server_address(self.server_address)
 		self.client.set_use_multicast(True)
-		self.client.local_ip_address = "192.168.0.70"
+		self.client.local_ip_address = "192.168.0.50"
 		self.client.rigid_body_listener = self.receive_rigid_body
 		self.client.run('d')
 		print("client started")
@@ -34,8 +41,22 @@ class RigidbodyNode(Node):
 		msg.pose.orientation.y =rotation[1]
 		msg.pose.orientation.z =rotation[2]
 		msg.pose.orientation.w =rotation[3]
-		
-		self.publisher.publish(msg)
+
+		if new_id==1:		
+			self.publisher1.publish(msg)
+		if new_id==2:		
+			self.publisher2.publish(msg)
+		if new_id==3:		
+			self.publisher3.publish(msg)
+		if new_id==4:		
+			self.publisher4.publish(msg)
+		if new_id==5:		
+			self.publisher5.publish(msg)
+		if new_id==6:		
+			self.publisher6.publish(msg)
+		if new_id==7:		
+			self.publisher7.publish(msg)
+
 
 def main():
 	rclpy.init()
