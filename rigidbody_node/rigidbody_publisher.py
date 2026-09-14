@@ -13,6 +13,7 @@ class RigidbodyNode(Node):
 		self.publisher5 = self.create_publisher(PoseStamped, 'optitrack_pose_5',10)
 		self.publisher6 = self.create_publisher(PoseStamped, 'optitrack_pose_6',10)
 		self.publisher7 = self.create_publisher(PoseStamped, 'optitrack_pose_7',10)
+		self.publisher8 = self.create_publisher(PoseStamped, 'optitrack_pose_traverse',10)
 
 		self.client = NatNetClient()
 		self.client_address="192.168.0.50"
@@ -56,6 +57,8 @@ class RigidbodyNode(Node):
 			self.publisher6.publish(msg)
 		if new_id==7:		
 			self.publisher7.publish(msg)
+		if new_id==8:		
+			self.publisher8.publish(msg)
 
 
 def main():
